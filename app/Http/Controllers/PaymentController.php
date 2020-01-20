@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Payment;
 use App\Student;
+use App\PaymentDetail;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class PaymentController extends Controller
 {
@@ -39,7 +42,35 @@ class PaymentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // return $request;
+        
+        $this->validate($request,[
+            'student_id' => 'required',
+            'course_fee' => 'required',
+            'total_paid' => 'required',
+            'date' => 'required'
+        ]);
+        $month_year = date('mY',strtotime($request->date));
+        // return $month_year;
+        $payment = new Payment;
+        $payment->student_id = $request->student_id;
+        $payment->course_fee = $request->course_fee;
+        $payment->total_paid = $request->total_paid;
+        $payment->date = $request->date;
+        $payment->month_year = $month_year;
+        $payment->created_by = Auth::id();
+        $payment->save();
+        if($payment->id){
+            $payment_detail = new PaymentDetail;
+            $payment_detail->payment_id = $payment->id;
+            $payment_detail->amount = $request->total_paid;
+            $payment_detail->date = $request->date;
+            $payment_detail->month_year = $month_year;
+            $payment_detail->created_by = Auth::id();
+            $payment_detail->save();
+        }
+        Alert::success('Success Title', 'Payment created successfully');
+        return redirect()->route('payments.index');
     }
 
     /**

@@ -18,7 +18,8 @@ class CreatePaymentsTable extends Migration
             $table->unsignedBigInteger('student_id');
             $table->float('course_fee');
             $table->float('total_paid');
-            $table->integer('month');
+            $table->date('date');
+            $table->integer('month_year');
             $table->integer('created_by');
             $table->timestamps();
         });

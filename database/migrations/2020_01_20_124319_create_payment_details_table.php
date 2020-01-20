@@ -16,6 +16,8 @@ class CreatePaymentDetailsTable extends Migration
         Schema::create('payment_details', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('payment_id');
+            $table->date('date');
+            $table->integer('month_year');
             $table->float('amount');
             $table->integer('created_by');
             $table->timestamps();

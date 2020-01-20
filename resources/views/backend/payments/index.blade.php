@@ -28,8 +28,10 @@
             <thead>
               <tr>
                 <th>ID</th>
-                <th>Title</th>
-                <th>Link</th>
+                <th>Name</th>
+                <th>Month</th>
+                <th>Course Fee</th>
+                <th>Total Paid</th>
                 <th>Status</th>
                 <th>Action</th>
               </tr>
@@ -37,23 +39,27 @@
             <tfoot>
               <tr>
                 <th>ID</th>
-                <th>Title</th>
-                <th>Link</th>
+                <th>Name</th>
+                <th>Month</th>
+                <th>Course Fee</th>
+                <th>Total Paid</th>
                 <th>Status</th>
                 <th>Action</th>
               </tr>
             </tfoot>
             <tbody id="all_news">
-              @forelse($payments as $key=>$news)
+              @forelse($payments as $key=>$payment)
                 <tr>
                 <td>{{$key+1}}</td>
-                <td>{{$news->title}}</td>
-                <td>{{$news->link}}</td>
-                <td>{{$news->mode==0?'Pending':'Active'}}</td>
+                <td>{{$payment->student->name}}</td>
+                <td>{{date('F d Y',strtotime($payment->date))}}</td>
+                <td>{{$payment->course_fee}}</td>
+                <td>{{$payment->total_paid}}</td>
+                <td>{{$payment->mode==0?'Pending':'Active'}}</td>
                 <td>
-                <a href="{{route('news.show',$news->id)}}" class="btn btn-success btn-sm">Details</a>
-                <a href="{{route('news.edit',$news->id)}}" class="btn btn-warning btn-sm">Edit</a>
-                <form action="{{route('news.destroy',$news->id)}}" method="post" class="d-inline-block">
+                <a href="{{route('payments.show',$payment->id)}}" class="btn btn-success btn-sm">Details</a>
+                <a href="{{route('payments.edit',$payment->id)}}" class="btn btn-warning btn-sm">Edit</a>
+                <form action="{{route('payments.destroy',$payment->id)}}" method="post" class="d-inline-block">
                     <button type="submit"  class="btn btn-danger btn-sm">Delete</button>
                 </form>
                 </td>
