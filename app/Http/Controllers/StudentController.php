@@ -19,9 +19,9 @@ class StudentController extends Controller
         return view('backend.students.index',compact('students'));
     }
 
-    public function get_students(){
-        $students = Student::all();
-        return $students;
+    public function get_student($id){
+        $student = Student::find($id);
+        return $student;
     }
 
     /**

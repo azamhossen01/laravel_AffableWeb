@@ -20,8 +20,9 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['prefix'=>'admin','middleware'=>'auth'],function(){
-    // Route::get('students/get_students','StudentController@get_students')->name('get_students');
+    Route::get('students/get_student/{id}','StudentController@get_student')->name('get_student');
     Route::resource('students','StudentController');
     Route::resource('news','NewsController');
     Route::resource('teams','TeamController');
+    Route::resource('payments','PaymentController');
 });
