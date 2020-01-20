@@ -57,6 +57,7 @@
   <!-- Demo scripts for this page-->
 <script src="{{asset('backend/js/demo/datatables-demo.js')}}"></script>
 <script src="{{asset('backend/js/demo/chart-area-demo.js')}}"></script>
+@include('sweetalert::alert')
 @stack('js')
 </body>
 

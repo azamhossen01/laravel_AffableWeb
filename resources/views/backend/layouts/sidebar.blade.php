@@ -1,7 +1,7 @@
  <!-- Sidebar -->
  <ul class="sidebar navbar-nav">
-    <li class="nav-item active">
-      <a class="nav-link" href="index.html">
+ <li class="nav-item {{Request::is('home') ? 'active':''}}">
+    <a class="nav-link" href="{{route('home')}}">
         <i class="fas fa-fw fa-tachometer-alt"></i>
         <span>Dashboard</span>
       </a>
@@ -22,14 +22,43 @@
         <a class="dropdown-item" href="blank.html">Blank Page</a>
       </div>
     </li> --}}
-    <li class="nav-item">
+    <li class="nav-item {{Request::is('admin/students*') ? 'active':''}}">
     <a class="nav-link" href="{{route('students.index')}}">
         <i class="fas fa-fw fa-chart-area"></i>
         <span>All Students</span></a>
     </li>
-    <li class="nav-item">
-      <a class="nav-link" href="tables.html">
+    <li class="nav-item {{Request::is('admin/news*') ? 'active':''}}">
+    <a class="nav-link" href="{{route('news.index')}}">
         <i class="fas fa-fw fa-table"></i>
-        <span>Tables</span></a>
+        <span>News</span></a>
     </li>
+    <li class="nav-item {{Request::is('admin/teams*') ? 'active':''}}">
+    <a class="nav-link" href="{{route('teams.index')}}">
+        <i class="fas fa-fw fa-table"></i>
+        <span>Team Members</span></a>
+    </li>
+
+    <li class="nav-item {{Request::is('admin/payments*') ? 'active':''}}">
+      <a class="nav-link" href="{{route('payments.index')}}">
+          <i class="fas fa-fw fa-table"></i>
+          <span>Payments</span></a>
+      </li>
+    <li class="nav-item {{Request::is('admin/teams*') ? 'active':''}}">
+    {{-- <a class="nav-link" href="{{route('teams.index')}}">
+        <i class="fas fa-fw fa-close"></i>
+        <span>Team Members</span></a> --}}
+
+
+        <a class="nav-link" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                                     <i class="fas fa-fw fa-table"></i>
+                                       <span> {{ __('Logout') }}</span>
+                                    </a>
+
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                @csrf
+            </form>
+    </li>
+    
   </ul>

@@ -1,6 +1,6 @@
 @extends('backend.layouts.app')
 
-@section('title','Students')
+@section('title','Students Details')
 
 @section('content')
 <div class="container-fluid">
@@ -20,55 +20,66 @@
       <div class="card-header">
         <i class="fas fa-table"></i>
         Data Table Example</div>
-        {{-- <button class="btn btn-primary" onclick="open_add_student_model()">Add New</button> --}}
-        <a href="{{route('students.create')}}" class="btn btn-primary">Add New</a>
+      <a href="{{route('students.index')}}" class="btn btn-primary" >Back</a >
       <div class="card-body">
-        <div class="table-responsive">
-          <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Father's Name</th>
-                <th>Cell</th>
-                <th>Status</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tfoot>
-              <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th width="20%">Father's Name</th>
-                <th>Cell</th>
-                <th>Status</th>
-                <th>Action</th>
-              </tr>
-            </tfoot>
-            <tbody id="all_students">
-              @forelse($students as $key=>$student)
-                <tr>
-                <td>{{$key+1}}</td>
-                <td>{{$student->name}}</td>
-                <td>{{$student->fathers_name}}</td>
-                <td>{{$student->cell}}</td>
-                <td>{{$student->mode==0?'Pending':'Active'}}</td>
-                <td>
-                <a href="{{route('students.show',$student->id)}}" class="btn btn-success btn-sm">Details</a>
-                <a href="{{route('students.edit',$student->id)}}" class="btn btn-warning btn-sm">Edit</a>
-                <form action="{{route('students.destroy',$student->id)}}" method="post" class="d-inline-block">
-                  @csrf 
-                  @method('delete')
-                    <button type="submit" onclick="return confirm('Are you sure?')"  class="btn btn-danger btn-sm">Delete</button>
-                </form>
-                </td>
-                </tr>
-              @empty 
-
-              @endforelse
-            </tbody>
-          </table>
-        </div>
+        <table class="table table-bordered table-striped">
+          <tr>
+              <th>ID</th>
+              <td><?= $student->id; ?></td>
+          </tr>
+          <tr>
+              <th>Name</th>
+              <td><?= $student->name; ?></td>
+          </tr>
+          <tr>
+              <th>Father's Name</th>
+              <td><?= $student->fathers_name; ?></td>
+          </tr>
+          <tr>
+              <th>Mother's Name</th>
+              <td><?= $student->mothers_name; ?></td>
+          </tr>
+          <tr>
+              <th>Gender</th>
+              <td><?= $student->gender; ?></td>
+          </tr>
+          <tr>
+              <th>Institution</th>
+              <td><?= $student->institution; ?></td>
+          </tr>
+          <tr>
+              <th>Cell</th>
+              <td><?= $student->cell; ?></td>
+          </tr>
+          <tr>
+              <th>Email</th>
+              <td><?= $student->email; ?></td>
+          </tr>
+          <tr>
+              <th>Address</th>
+              <td><?= $student->address; ?></td>
+          </tr>
+          <tr>
+              <th>Course Name</th>
+              <td><?= $student->course_name; ?></td>
+          </tr>
+          <tr>
+              <th>Course Code</th>
+              <td><?= $student->course_code; ?></td>
+          </tr>
+          <tr>
+              <th>Batch No</th>
+              <td><?= $student->batch_no; ?></td>
+          </tr>
+          <tr>
+              <th>Status</th>
+              <td><span class="badge badge-<?= $student->mode == 0 ? 'warning' : 'success' ?>"><?= $student->mode == 0 ? 'Pending' : 'Active' ?></span></td>
+          </tr>
+          <tr>
+              <th>Resgister on</th>
+              <td><?= $student->created_at->format('F d Y'); ?></td>
+          </tr>
+      </table>
       </div>
       <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
     </div>
@@ -256,7 +267,7 @@
                 $.ajax({
                     type : 'post',
                     data : data,
-                    url : "http://localhost:8000/admin/students", //url for students store
+                    url : "http://localhost:8000/admin/students",
                     success : function(data){
                         console.log(data);
                         if(data == 1){

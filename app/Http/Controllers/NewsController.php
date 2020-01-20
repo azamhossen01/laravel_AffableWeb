@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\News;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class NewsController extends Controller
 {
@@ -13,7 +15,8 @@ class NewsController extends Controller
      */
     public function index()
     {
-        //
+        $all_news = News::all();
+        return view('backend.news.index',compact('all_news'));
     }
 
     /**
@@ -23,7 +26,7 @@ class NewsController extends Controller
      */
     public function create()
     {
-        //
+        return view('backend.news.create');
     }
 
     /**
@@ -34,7 +37,18 @@ class NewsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+            'title' => 'required',
+            'description' => 'required',
+            'link' => 'required'
+        ]);
+        $news = new News;
+        $news->title = $request->title;
+        $news->description = $request->description;
+        $news->link = $request->link;
+        $news->save();
+        Alert::success('Success Title', 'News created successfully');
+        return redirect()->route('news.index');
     }
 
     /**
@@ -45,7 +59,8 @@ class NewsController extends Controller
      */
     public function show($id)
     {
-        //
+        $news = News::find($id);
+        return view('backend.news.show',compact('news'));
     }
 
     /**
@@ -56,7 +71,8 @@ class NewsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $news = News::find($id);
+        return view('backend.news.edit',compact('news'));
     }
 
     /**
@@ -68,7 +84,19 @@ class NewsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request,[
+            'title' => 'required',
+            'description' => 'required',
+            'link' => 'required'
+        ]);
+        $news = News::find($id);
+        $news->title = $request->title;
+        $news->description = $request->description;
+        $news->link = $request->link;
+        $news->mode = $request->mode;
+        $news->update();
+        Alert::success('Success Title', 'News updated successfully');
+        return redirect()->route('news.index');
     }
 
     /**

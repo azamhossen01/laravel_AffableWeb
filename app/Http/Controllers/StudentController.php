@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Student;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class StudentController extends Controller
 {
@@ -14,8 +15,8 @@ class StudentController extends Controller
      */
     public function index()
     {
-        
-        return view('backend.students.index');
+        $students = Student::all();
+        return view('backend.students.index',compact('students'));
     }
 
     public function get_students(){
@@ -30,7 +31,7 @@ class StudentController extends Controller
      */
     public function create()
     {
-        //
+        return view('backend.students.create');
     }
 
     /**
@@ -59,7 +60,8 @@ class StudentController extends Controller
         $student->batch_no = $request->batch_no;
         $student->password = bcrypt($request->password);
         $student->save();
-        return '1';
+        Alert::success('Success Title', 'Student created successfully');
+        return redirect()->route('students.index');
     }
 
     /**
@@ -71,7 +73,7 @@ class StudentController extends Controller
     public function show($id)
     {
         $student = Student::find($id);
-        return $student;
+        return view('backend.students.show',compact('student'));
     }
 
     /**
@@ -82,7 +84,9 @@ class StudentController extends Controller
      */
     public function edit($id)
     {
-        //
+        $student = Student::find($id);
+        
+        return view('backend.students.edit',compact('student'));
     }
 
     /**
@@ -94,7 +98,25 @@ class StudentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $student = Student::find($id);
+        $student->name = $request->name;
+        $student->fathers_name = $request->fathers_name;
+        $student->mothers_name = $request->mothers_name;
+        $student->cell = $request->cell;
+        $student->email = $request->email;
+        $student->gender = $request->gender;
+        $student->address = $request->address;
+        $student->institution = $request->institution;
+        $student->course_name = $request->course_name;
+        $student->course_code = $request->course_code;
+        $student->batch_no = $request->batch_no;
+        if($request->password){
+            $student->password = bcrypt($request->password);
+        }
+        
+        $student->update();
+        Alert::success('Success Title', 'Student updated successfully');
+        return redirect()->route('students.index');
     }
 
     /**
@@ -105,6 +127,8 @@ class StudentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $student = Student::find($id)->delete();
+        Alert::success('Success Title', 'Student deleted successfully');
+        return redirect()->route('students.index');
     }
 }
