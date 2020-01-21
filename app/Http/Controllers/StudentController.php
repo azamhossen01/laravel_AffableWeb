@@ -59,6 +59,7 @@ class StudentController extends Controller
         $student->course_code = $request->course_code;
         $student->batch_no = $request->batch_no;
         $student->password = bcrypt($request->password);
+
         $student->save();
         Alert::success('Success Title', 'Student created successfully');
         return redirect()->route('students.index');
@@ -110,6 +111,7 @@ class StudentController extends Controller
         $student->course_name = $request->course_name;
         $student->course_code = $request->course_code;
         $student->batch_no = $request->batch_no;
+        $student->mode = $request->mode;
         if($request->password){
             $student->password = bcrypt($request->password);
         }
@@ -130,5 +132,16 @@ class StudentController extends Controller
         $student = Student::find($id)->delete();
         Alert::success('Success Title', 'Student deleted successfully');
         return redirect()->route('students.index');
+    }
+
+    public function change_status(){
+        $mode = $_GET['mode']?'0':'1';
+        $student_id = $_GET['student_id'];
+        $student = Student::find($student_id);
+        $student->mode = $mode;
+        $student->update();
+        Alert::success('Success Title', 'Student status updated successfully');
+        return 1;
+
     }
 }

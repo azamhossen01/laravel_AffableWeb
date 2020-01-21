@@ -43,7 +43,7 @@
           <i class="fas fa-fw fa-table"></i>
           <span>Payments</span></a>
       </li>
-    <li class="nav-item {{Request::is('admin/teams*') ? 'active':''}}">
+    <li class="nav-item">
     {{-- <a class="nav-link" href="{{route('teams.index')}}">
         <i class="fas fa-fw fa-close"></i>
         <span>Team Members</span></a> --}}

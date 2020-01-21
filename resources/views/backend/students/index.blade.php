@@ -52,7 +52,7 @@
                 <td>{{$student->name}}</td>
                 <td>{{$student->fathers_name}}</td>
                 <td>{{$student->cell}}</td>
-                <td>{{$student->mode==0?'Pending':'Active'}}</td>
+                <td ondblclick="change_mode(<?= $student->id ?>,<?= $student->mode ?>)">{{$student->mode==0?'Pending':'Active'}}</td>
                 <td>
                 <a href="{{route('students.show',$student->id)}}" class="btn btn-success btn-sm">Details</a>
                 <a href="{{route('students.edit',$student->id)}}" class="btn btn-warning btn-sm">Edit</a>
@@ -177,7 +177,29 @@
 @push('js')
 
 <script>
-    var li = "http://localhost:8000/admin/";
+ var li = "http://localhost:8000/admin/";
+
+  function change_mode(student_id,status){
+    var mode = status==0?'0':'1';
+    var data = {student_id,mode};
+    // console.log(data);
+    // alert(mode);
+    if(mode){
+      $.ajax({
+        type : 'get',
+        data : data,
+        url : li + "students/change_status",
+        success : function(status){
+         
+            location.reload();
+          
+        }
+      });
+    }
+  }
+
+
+   
 
     $(document).ready(function(){
     //    get_all_students();

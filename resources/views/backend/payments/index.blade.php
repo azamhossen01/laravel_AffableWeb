@@ -1,6 +1,6 @@
 @extends('backend.layouts.app')
 
-@section('title','News')
+@section('title','Payments')
 
 @section('content')
 <div class="container-fluid">
@@ -55,7 +55,7 @@
                 <td>{{date('F d Y',strtotime($payment->date))}}</td>
                 <td>{{$payment->course_fee}}</td>
                 <td>{{$payment->total_paid}}</td>
-                <td>{{$payment->mode==0?'Pending':'Active'}}</td>
+                <td>{{$payment->status==0?'Partial Payment':'Paid'}}</td>
                 <td>
                 <a href="{{route('payments.show',$payment->id)}}" class="btn btn-success btn-sm">Details</a>
                 <a href="{{route('payments.edit',$payment->id)}}" class="btn btn-warning btn-sm">Edit</a>

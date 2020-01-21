@@ -23,7 +23,7 @@ class CreateTeamsTable extends Migration
             $table->string('fb')->unique();
             $table->string('degree');
             $table->integer('order_by')->default(0);
-            $table->string('image');
+            $table->string('image')->nullable();
             $table->boolean('mode')->default(0);
             $table->timestamps();
         });

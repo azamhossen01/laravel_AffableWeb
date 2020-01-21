@@ -141,4 +141,15 @@ class TeamController extends Controller
     {
         //
     }
+
+    public function change_status(){
+        $mode = $_GET['mode']?'0':'1';
+        $team_id = $_GET['team_id'];
+        $student = Team::find($team_id);
+        $student->mode = $mode;
+        $student->update();
+        Alert::success('Success Title', 'Team member status updated successfully');
+        return 1;
+
+    }
 }

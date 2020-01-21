@@ -109,4 +109,15 @@ class NewsController extends Controller
     {
         //
     }
+
+    public function change_status(){
+        $mode = $_GET['mode']?'0':'1';
+        $news_id = $_GET['news_id'];
+        $news = News::find($news_id);
+        $news->mode = $mode;
+        $news->update();
+        Alert::success('Success Title', 'News status updated successfully');
+        return 1;
+
+    }
 }

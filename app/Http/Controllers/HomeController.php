@@ -2,6 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\News;
+use App\Team;
+use App\Payment;
+use App\Student;
+use App\PaymentDetail;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,6 +28,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('backend.home');
+        $students = count(Student::where('mode',1)->get());
+        $news = count(News::where('mode',1)->get());
+        $teams = count(Team::where('mode',1)->get());
+        $incomes = PaymentDetail::all()->sum('amount');
+        $due = (Payment::all()->sum('course_fee') - $incomes);
+        return view('backend.home',compact('students','news','teams','incomes','due'));
     }
 }

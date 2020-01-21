@@ -7,100 +7,125 @@
 
     <!-- Breadcrumbs-->
     <ol class="breadcrumb">
-      <li class="breadcrumb-item">
-        <a href="#">Dashboard</a>
-      </li>
-      <li class="breadcrumb-item active">Overview</li>
+        <li class="breadcrumb-item">
+            <a href="#">Dashboard</a>
+        </li>
+        <li class="breadcrumb-item active">Overview</li>
     </ol>
 
-    
+
 
     <!-- DataTables Example -->
     <div class="card mb-3">
-      <div class="card-header">
-        <i class="fas fa-table"></i>
-        Data Table Example</div>
-      <a href="{{route('students.index')}}" class="btn btn-primary" >Back</a >
-      <div class="card-body">
-        <table class="table table-bordered table-striped">
-        <form action="{{route('students.update',$student->id)}}" method="post" id="add_student_form">
-                @csrf
-                @method('put')
-                <tr>
-                    <th>Name : </th>
-                <td><input type="text" value="{{$student->name}}" name="name" id="name" class="form-control"
-                            placeholder="Name" required></td>
-                </tr>
-                <tr>
-                    <th>Father's Name : </th>
-                    <td><input type="text" value="{{$student->fathers_name}}" required name="fathers_name" id="fathers_name"
-                            class="form-control" placeholder="Father's Name"></td>
-                </tr>
-                <tr>
-                    <th>Mother's Name : </th>
-                    <td><input type="text" value="{{$student->mothers_name}}" required name="mothers_name" id="mothers_name"
-                            class="form-control" placeholder="Mother's Name"></td>
-                </tr>
-                <tr>
-                    <th>Gender : </th>
-                    <td>
-                        <select name="gender" required id="gender" class="form-control">
-                            <option value="" selected disabled>Select Gender</option>
-                            <option {{$student->gender=='Male'?'selected':''}} value="Male">Male</option>
-                            <option {{$student->gender=='Female'?'selected':''}} value="Female">Female</option>
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <th>Institution : </th>
-                    <td><input type="text" value="{{$student->institution}}" required name="institution" id="institution"
-                            class="form-control" placeholder="Institution"></td>
-                </tr>
-                <tr>
-                    <th>Cell : </th>
-                    <td><input type="text" value="{{$student->cell}}" required name="cell" id="cell"
-                            class="form-control" placeholder="Cell"></td>
-                </tr>
-                <tr>
-                    <th>Email : </th>
-                    <td><input type="email" value="{{$student->email}}" required name="email" id="email"
-                            class="form-control" placeholder="Email"></td>
-                </tr>
-                <tr>
-                    <th>Address : </th>
-                    <td><textarea name="address" required class="form-control" id="address"
-                            cols="30" rows="3" placeholder="Address">{{$student->address}}</textarea></td>
-                </tr>
-                <tr>
-                    <th>Course Name : </th>
-                    <td><input type="text" value="{{$student->course_name}}" required name="course_name" id="course_name"
-                            class="form-control" placeholder="Course Name"></td>
-                </tr>
-                <tr>
-                    <th>Course Code : </th>
-                    <td><input type="text" value="{{$student->course_code}}" required name="course_code" id="course_code"
-                            class="form-control" placeholder="Course Code"></td>
-                </tr>
-                <tr>
-                    <th>Batch No : </th>
-                    <td><input type="text" value="{{$student->batch_no}}" required name="batch_no" id="batch_no"
-                            class="form-control" placeholder="Batch No"></td>
-                </tr>
-                <tr>
-                    <th>Password : </th>
-                    <td><input type="password" name="password" id="password"
-                            class="form-control" placeholder="Password"></td>
-                </tr>
-                <tr>
-                    <td colspan=2><button type="submit"
-                        id="add_student"    class="btn btn-warning  btn-block">Update</button></td>
-                </tr>
-        </table>
-      </div>
-      <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+        <div class="card-header">
+            <i class="fas fa-table"></i>
+            Data Table Example</div>
+        <a href="{{route('students.index')}}" class="btn btn-primary">Back</a>
+        <div class="card-body">
+            <table class="table table-bordered table-striped">
+                <form action="{{route('students.update',$student->id)}}" method="post" id="add_student_form">
+                    @csrf
+                    @method('put')
+                    <tr>
+                        <th>Name : </th>
+                        <td><input type="text" value="{{$student->name}}" name="name" id="name" class="form-control"
+                                placeholder="Name" required></td>
+                    </tr>
+                    <tr>
+                        <th>Father's Name : </th>
+                        <td><input type="text" value="{{$student->fathers_name}}" required name="fathers_name"
+                                id="fathers_name" class="form-control" placeholder="Father's Name"></td>
+                    </tr>
+                    <tr>
+                        <th>Mother's Name : </th>
+                        <td><input type="text" value="{{$student->mothers_name}}" required name="mothers_name"
+                                id="mothers_name" class="form-control" placeholder="Mother's Name"></td>
+                    </tr>
+                    <tr>
+                        <th>Gender : </th>
+                        <td>
+                            <select name="gender" required id="gender" class="form-control">
+                                <option value="" selected disabled>Select Gender</option>
+                                <option {{$student->gender=='Male'?'selected':''}} value="Male">Male</option>
+                                <option {{$student->gender=='Female'?'selected':''}} value="Female">Female</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Institution : </th>
+                        <td><input type="text" value="{{$student->institution}}" required name="institution"
+                                id="institution" class="form-control" placeholder="Institution"></td>
+                    </tr>
+                    <tr>
+                        <th>Cell : </th>
+                        <td><input type="text" value="{{$student->cell}}" required name="cell" id="cell"
+                                class="form-control" placeholder="Cell"></td>
+                    </tr>
+                    <tr>
+                        <th>Email : </th>
+                        <td><input type="email" value="{{$student->email}}" required name="email" id="email"
+                                class="form-control" placeholder="Email"></td>
+                    </tr>
+                    <tr>
+                        <th>Address : </th>
+                        <td><textarea name="address" required class="form-control" id="address" cols="30" rows="3"
+                                placeholder="Address">{{$student->address}}</textarea></td>
+                    </tr>
+                    <tr>
+                        <th>Course Name : </th>
+                        <td><input type="text" value="{{$student->course_name}}" required name="course_name"
+                                id="course_name" class="form-control" placeholder="Course Name"></td>
+                    </tr>
+                    <tr>
+                        <th>Course Code : </th>
+                        <td><input type="text" value="{{$student->course_code}}" required name="course_code"
+                                id="course_code" class="form-control" placeholder="Course Code"></td>
+                    </tr>
+                    <tr>
+                        <th>Batch No : </th>
+                        <td><input type="text" value="{{$student->batch_no}}" required name="batch_no" id="batch_no"
+                                class="form-control" placeholder="Batch No"></td>
+                    </tr>
+                    <tr>
+                        <th>Password : </th>
+                        <td><input type="password" name="password" id="password" class="form-control"
+                                placeholder="Password"></td>
+                    </tr>
+                    <tr>
+                        <th>Status : </th>
+                        <td>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-check">
+                                        <label class="form-check-label">
+                                            <input type="radio" class="form-check-input" name="mode"
+                                                <?= $student['mode']==0?'checked':'' ?> value="0">Pending
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-check">
+                                        <label class="form-check-label">
+                                            <input type="radio" class="form-check-input" name="mode"
+                                                <?= $student['mode']==1?'checked':'' ?> value="1">Active
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan=2><button type="submit" id="add_student"
+                                class="btn btn-warning  btn-block">Update</button></td>
+                    </tr>
+            </table>
+        </div>
+        <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
     </div>
 
-  </div>
+</div>
 
 
 @endsection
@@ -110,8 +135,8 @@
 <script>
     var li = "http://localhost:8000/admin/";
 
-    $(document).ready(function(){
-    //    get_all_students();
+    $(document).ready(function () {
+        //    get_all_students();
     });
 
 
@@ -142,8 +167,8 @@
     //         }
     //     });
     // }
-    
-   
+
+
     // function open_add_student_model(){
 
     //     $('#name').val("");
@@ -182,8 +207,8 @@
     //             // var formData = new FormData(this);
     //             var _token = "{{ csrf_token() }}";
     //             var data = {name,fathers_name,mothers_name,cell,email,gender,address,institution,course_name,course_code,batch_no,password,_token};
-                
-                
+
+
     //             $.ajax({
     //                 type : 'post',
     //                 data : data,
@@ -206,7 +231,7 @@
     //                             'error'
     //                         );
     //                     }else{
-                            
+
     //                     }
     //                 }
     //             });
@@ -246,8 +271,9 @@
     //             }
     //         });
     //     }
-        
+
     // }
+
 </script>
 
 @endpush

@@ -49,7 +49,7 @@
                 <td>{{$key+1}}</td>
                 <td>{{$news->title}}</td>
                 <td>{{$news->link}}</td>
-                <td>{{$news->mode==0?'Pending':'Active'}}</td>
+                <td  ondblclick="change_mode(<?= $news->id ?>,<?= $news->mode ?>)">{{$news->mode==0?'Pending':'Active'}}</td>
                 <td>
                 <a href="{{route('news.show',$news->id)}}" class="btn btn-success btn-sm">Details</a>
                 <a href="{{route('news.edit',$news->id)}}" class="btn btn-warning btn-sm">Edit</a>
@@ -125,6 +125,25 @@
 
 <script>
     var li = "http://localhost:8000/admin/";
+
+    function change_mode(news_id,status){
+    var mode = status==0?'0':'1';
+    var data = {news_id,mode};
+    // console.log(data);
+    // alert(mode);
+    if(mode){
+      $.ajax({
+        type : 'get',
+        data : data,
+        url : li + "news/change_status",
+        success : function(status){
+         
+            location.reload();
+          
+        }
+      });
+    }
+  }
 
     $(document).ready(function(){
     //    get_all_students();

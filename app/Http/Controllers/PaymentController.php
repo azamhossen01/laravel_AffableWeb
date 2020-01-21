@@ -43,6 +43,7 @@ class PaymentController extends Controller
     public function store(Request $request)
     {
         // return $request;
+
         
         $this->validate($request,[
             'student_id' => 'required',
@@ -51,7 +52,13 @@ class PaymentController extends Controller
             'date' => 'required'
         ]);
         $month_year = date('mY',strtotime($request->date));
-        // return $month_year;
+        $payment = Payment::where(['month_year'=>$month_year,'student_id'=>$request->student_id])->get();
+        // return count($payment);
+        if(count($payment)>0){
+            Alert::error('Error Title', 'Payment created already for this month');
+            return redirect()->back();
+        }
+        
         $payment = new Payment;
         $payment->student_id = $request->student_id;
         $payment->course_fee = $request->course_fee;
@@ -81,7 +88,9 @@ class PaymentController extends Controller
      */
     public function show($id)
     {
-        //
+        $payment=Payment::find($id);
+        $payment_details = $payment->payment_details;
+        return view('backend.payments.show',compact('payment','payment_details'));
     }
 
     /**

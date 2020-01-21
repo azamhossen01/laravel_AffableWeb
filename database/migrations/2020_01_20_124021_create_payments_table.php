@@ -21,6 +21,7 @@ class CreatePaymentsTable extends Migration
             $table->date('date');
             $table->integer('month_year');
             $table->integer('created_by');
+            $table->integer('status')->default(0);
             $table->timestamps();
         });
     }
