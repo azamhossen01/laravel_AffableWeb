@@ -52,12 +52,14 @@
                 <td>{{$team->name}}</td>
                 <td>{{$team->position}}</td>
                 <td>{{$team->cell}}</td>
-                <td ondblclick="change_mode(<?= $team->id ?>,<?= $team->mode ?>)">{{$team->mode==0?'Pending':'Active'}}</td>
+                <td style="cursor:pointer" title="Change Status" ondblclick="change_mode(<?= $team->id ?>,<?= $team->mode ?>)"><span class="badge badge-{{$team->mode==0?'warning':'success'}}">{{$team->mode==0?'Pending':'Active'}}</span></td>
                 <td>
                 <a href="{{route('teams.show',$team->id)}}" class="btn btn-success btn-sm">Details</a>
                 <a href="{{route('teams.edit',$team->id)}}" class="btn btn-warning btn-sm">Edit</a>
                 <form action="{{route('teams.destroy',$team->id)}}" method="post" class="d-inline-block">
-                    <button type="submit"  class="btn btn-danger btn-sm">Delete</button>
+                @csrf 
+                @method('delete')
+                    <button type="submit" onclick="return confirm('Are you sure?')"  class="btn btn-danger btn-sm">Delete</button>
                 </form>
                 </td>
                 </tr>

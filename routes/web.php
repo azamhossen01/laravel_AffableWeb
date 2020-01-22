@@ -29,4 +29,10 @@ Route::group(['prefix'=>'admin','middleware'=>'auth'],function(){
     Route::resource('teams','TeamController');
     Route::resource('payments','PaymentController');
     Route::resource('payment_details','PaymentDetailController');
+
+    Route::get('profile/{id}','HomeController@profile')->name('profile');
+    Route::put('update_user/{id}','HomeController@update_user')->name('update_user');
+
+    Route::get('messages','HomeController@messages')->name('messages');
+    Route::post('messages/send_message','HomeController@send_message')->name('send_message');
 });

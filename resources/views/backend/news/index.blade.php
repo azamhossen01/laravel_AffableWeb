@@ -49,12 +49,14 @@
                 <td>{{$key+1}}</td>
                 <td>{{$news->title}}</td>
                 <td>{{$news->link}}</td>
-                <td  ondblclick="change_mode(<?= $news->id ?>,<?= $news->mode ?>)">{{$news->mode==0?'Pending':'Active'}}</td>
+                <td  style="cursor:pointer" title="Change Status" ondblclick="change_mode(<?= $news->id ?>,<?= $news->mode ?>)"><span class="badge badge-{{$news->mode==0?'warning':'success'}}">{{$news->mode==0?'Pending':'Active'}}</span></td>
                 <td>
                 <a href="{{route('news.show',$news->id)}}" class="btn btn-success btn-sm">Details</a>
                 <a href="{{route('news.edit',$news->id)}}" class="btn btn-warning btn-sm">Edit</a>
                 <form action="{{route('news.destroy',$news->id)}}" method="post" class="d-inline-block">
-                    <button type="submit"  class="btn btn-danger btn-sm">Delete</button>
+                @csrf 
+                @method('delete')
+                    <button type="submit" onclick="return confirm('Are you sure?')"  class="btn btn-danger btn-sm">Delete</button>
                 </form>
                 </td>
                 </tr>

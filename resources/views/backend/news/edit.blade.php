@@ -1,6 +1,6 @@
 @extends('backend.layouts.app')
 
-@section('title','Students Details')
+@section('title','Edit News')
 
 @section('content')
 <div class="container-fluid">
@@ -29,13 +29,13 @@
              
               <tr>
                   <th>Title : </th>
-                  <td><input type="text" value="<?= $news->title ?>" name="title"
+                  <td><input required type="text" value="<?= $news->title ?>" name="title"
                           id="title" class="form-control" placeholder="Title"></td>
               </tr>
 
               <tr>
                   <th>Description : </th>
-                  <td><textarea name="description" class="form-control" id="description"
+                  <td><textarea required name="description" class="form-control" id="description"
                           cols="30" rows="3"
                           placeholder="Description"><?= $news->description ?></textarea>
                   </td>
@@ -43,7 +43,7 @@
 
               <tr>
                   <th>Link : </th>
-                  <td><input type="text" value="<?= $news->link ?>" name="link" id="link"
+                  <td><input required type="text" value="<?= $news->link ?>" name="link" id="link"
                           class="form-control" placeholder="Link"></td>
               </tr>
               <tr>

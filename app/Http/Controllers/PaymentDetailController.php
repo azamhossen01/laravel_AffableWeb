@@ -71,6 +71,39 @@ class PaymentDetailController extends Controller
         $payment_detail->amount = $request->amount;
         $payment_detail->created_by = Auth::id();
         $payment_detail->save();
+
+
+             // code for sending sms 
+        // $student = Student::find($request->student_id);
+        $to = $payment->student->cell;
+        // $to = "017xxxxxxx,+88016xxxxxxx";
+        $token = "967c5bf770a47eb1731dec1e5690a7c4";
+        // $message = "Hello $student->name $message";
+        $message = "Thank You ".$payment->student->name.". Paid $request->amount successfully!";
+
+        $url = "http://api.greenweb.com.bd/api.php";
+
+
+        $data= array(
+        'to'=>"$to",
+        'message'=>"$message",
+        'token'=>"$token"
+        ); // Add parameters in key value
+        $ch = curl_init(); // Initialize cURL
+        curl_setopt($ch, CURLOPT_URL,$url);
+        curl_setopt($ch, CURLOPT_ENCODING, '');
+        curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $smsresult = curl_exec($ch);
+
+        //Result
+        echo $smsresult;
+
+        //Error Display
+        echo curl_error($ch);
+
+
+
         Alert::success('Success Title', 'Payment created successfully');
         return redirect()->back();
     }

@@ -24,25 +24,32 @@
     </li> --}}
     <li class="nav-item {{Request::is('admin/students*') ? 'active':''}}">
     <a class="nav-link" href="{{route('students.index')}}">
-        <i class="fas fa-fw fa-chart-area"></i>
+        <i class="fas fa-fw fa-user"></i>
         <span>All Students</span></a>
     </li>
     <li class="nav-item {{Request::is('admin/news*') ? 'active':''}}">
     <a class="nav-link" href="{{route('news.index')}}">
-        <i class="fas fa-fw fa-table"></i>
+    <i class="fas fa-fw fa-newspaper"></i>
         <span>News</span></a>
     </li>
     <li class="nav-item {{Request::is('admin/teams*') ? 'active':''}}">
     <a class="nav-link" href="{{route('teams.index')}}">
-        <i class="fas fa-fw fa-table"></i>
+    <i class="fas fa-fw fa-users"></i>
         <span>Team Members</span></a>
     </li>
 
     <li class="nav-item {{Request::is('admin/payments*') ? 'active':''}}">
       <a class="nav-link" href="{{route('payments.index')}}">
-          <i class="fas fa-fw fa-table"></i>
+      <i class="fas fa-fw fa-dollar-sign"></i>
           <span>Payments</span></a>
-      </li>
+    </li>
+
+    <li class="nav-item {{Request::is('admin/messages*') ? 'active':''}}">
+      <a class="nav-link" href="{{route('messages')}}">
+      <i class="fas fa-fw fa-dollar-sign"></i>
+          <span>Messaging</span></a>
+    </li>
+
     <li class="nav-item">
     {{-- <a class="nav-link" href="{{route('teams.index')}}">
         <i class="fas fa-fw fa-close"></i>
@@ -52,7 +59,7 @@
         <a class="nav-link" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                                     <i class="fas fa-fw fa-table"></i>
+                                                     <i class="fas fa-fw fa-sign-out-alt"></i>
                                        <span> {{ __('Logout') }}</span>
                                     </a>
 

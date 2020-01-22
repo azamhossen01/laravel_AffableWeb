@@ -139,7 +139,9 @@ class TeamController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Team::find($id)->delete();
+        Alert::success('Success Title', 'Team member deleted successfully');
+        return redirect()->route('teams.index');
     }
 
     public function change_status(){

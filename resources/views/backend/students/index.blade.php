@@ -52,7 +52,7 @@
                 <td>{{$student->name}}</td>
                 <td>{{$student->fathers_name}}</td>
                 <td>{{$student->cell}}</td>
-                <td ondblclick="change_mode(<?= $student->id ?>,<?= $student->mode ?>)">{{$student->mode==0?'Pending':'Active'}}</td>
+                <td style="cursor:pointer" title="Change Status" ondblclick="change_mode(<?= $student->id ?>,<?= $student->mode ?>)"><span class="badge badge-{{$student->mode==0?'warning':'success'}}">{{$student->mode==0?'Pending':'Active'}}</span></td>
                 <td>
                 <a href="{{route('students.show',$student->id)}}" class="btn btn-success btn-sm">Details</a>
                 <a href="{{route('students.edit',$student->id)}}" class="btn btn-warning btn-sm">Edit</a>

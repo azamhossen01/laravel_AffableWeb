@@ -107,7 +107,9 @@ class NewsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        News::find($id)->delete();
+        Alert::success('Success Title', 'News deleted successfully');
+        return redirect()->route('news.index');
     }
 
     public function change_status(){
