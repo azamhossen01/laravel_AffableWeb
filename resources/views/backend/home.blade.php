@@ -114,7 +114,7 @@
     </div>
 
     <!-- Area Chart Example-->
-    <div class="card mb-3">
+    <!-- <div class="card mb-3">
       <div class="card-header">
         <i class="fas fa-chart-area"></i>
         Area Chart Example</div>
@@ -122,46 +122,52 @@
         <canvas id="myAreaChart" width="100%" height="30"></canvas>
       </div>
       <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
-    </div>
+    </div> -->
 
     <!-- DataTables Example -->
     <div class="card mb-3">
       <div class="card-header">
         <i class="fas fa-table"></i>
-        Data Table Example</div>
+        Recent Payments</div>
       <div class="card-body">
         <div class="table-responsive">
           <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
             <thead>
               <tr>
+              <th>SL</th>
                 <th>Name</th>
-                <th>Position</th>
-                <th>Office</th>
-                <th>Age</th>
-                <th>Start date</th>
-                <th>Salary</th>
+                <th>Course Name</th>
+                <th>Batch</th>
+                <th>Cell</th>
+                <th>Date</th>
+                <th>Amount</th>
               </tr>
             </thead>
             <tfoot>
               <tr>
+              <th>SL</th>
                 <th>Name</th>
-                <th>Position</th>
-                <th>Office</th>
-                <th>Age</th>
-                <th>Start date</th>
-                <th>Salary</th>
+                <th>Course Name</th>
+                <th>Batch</th>
+                <th>Cell</th>
+                <th>Date</th>
+                <th>Amount</th>
               </tr>
             </tfoot>
             <tbody>
+              @forelse($recent_payments as $key=>$rp)
               <tr>
-                <td>Tiger Nixon</td>
-                <td>System Architect</td>
-                <td>Edinburgh</td>
-                <td>61</td>
-                <td>2011/04/25</td>
-                <td>$320,800</td>
+                <td>{{$key+1}}</td>
+                <td>{{$rp->payment->student->name}}</td>
+                <td>{{$rp->payment->student->course_name}}</td>
+                <td>{{$rp->payment->student->batch_no}}</td>
+                <td>{{$rp->payment->student->cell}}</td>
+                <td>{{$rp->date}}</td>
+                <td>{{$rp->amount}}</td>
+
               </tr>
-              
+              @empty 
+              @endforelse
             </tbody>
           </table>
         </div>

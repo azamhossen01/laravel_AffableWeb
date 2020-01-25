@@ -36,7 +36,9 @@ class HomeController extends Controller
         $teams = count(Team::where('mode',1)->get());
         $incomes = PaymentDetail::all()->sum('amount');
         $due = (Payment::all()->sum('course_fee') - $incomes);
-        return view('backend.home',compact('students','news','teams','incomes','due'));
+        $recent_payments = PaymentDetail::orderBy('created_at','desc')->take(5)->get();
+        // return $recent_payments;
+        return view('backend.home',compact('students','news','teams','incomes','due','recent_payments'));
     }
 
     public function profile($id){
