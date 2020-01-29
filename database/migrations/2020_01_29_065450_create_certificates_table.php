@@ -16,7 +16,7 @@ class CreateCertificatesTable extends Migration
         Schema::create('certificates', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('student_id');
-            $table->integer('serial_number');
+            $table->integer('serial_number')->unique();
             $table->string('certificate_image')->default('default.png');
             $table->timestamps();
         });

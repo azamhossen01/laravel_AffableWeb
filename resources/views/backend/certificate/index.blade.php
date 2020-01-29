@@ -55,7 +55,7 @@
                 <td  style="cursor:pointer" title="Change Status" ondblclick="change_mode(<?= $certificate->id ?>,<?= $certificate->mode ?>)"><span class="badge badge-{{$certificate->status==0?'warning':'success'}}">{{$certificate->status==0?'Pending':'Active'}}</span></td>
                 <td>
                 <a href="{{route('certificates.show',$certificate->id)}}" class="btn btn-success btn-sm">Details</a>
-                <a href="{{route('certificates.edit',$certificate->id)}}" class="btn btn-warning btn-sm">Edit</a>
+                <!-- <a href="{{route('certificates.edit',$certificate->id)}}" class="btn btn-warning btn-sm">Edit</a> -->
                 <form action="{{route('certificates.destroy',$certificate->id)}}" method="post" class="d-inline-block">
                 @csrf 
                 @method('delete')

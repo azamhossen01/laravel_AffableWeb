@@ -63,7 +63,8 @@ class CertificateController extends Controller
      */
     public function show($id)
     {
-        //
+        $certificate = Certificate::find($id);
+        return view('backend.certificate.show',compact('certificate'));
     }
 
     /**
@@ -97,7 +98,9 @@ class CertificateController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $certificate = Certificate::find($id)->delete();
+        Alert::success('Success Title', 'Certificate deleted successfully');
+        return redirect()->route('certificates.index');
     }
 
     public function change_status(){

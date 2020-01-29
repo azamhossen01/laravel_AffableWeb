@@ -27,12 +27,12 @@
           @csrf 
             <tr>
               <th>Serial Number : </th>
-              <td><input type="text" readonly name="serial_number" id="serial_number" class="form-control" value=""></td>
+              <td><input type="text" required  name="serial_number" id="serial_number" class="form-control" value=""></td>
             </tr>
               <tr>
                   <th>Student : </th>
                   <td>
-                      <select name="student_id" id="student_id" class="form-control"  onchange="get_student_info(this.value)">
+                      <select name="student_id" id="student_id" class="form-control"  onchange="get_student_info(this.value)" required>
                         <option value="" selected disabled>Select Student</option>
                         @forelse($students as $student) 
                           <option value="{{$student->id}}">{{$student->name}}</option>
@@ -73,7 +73,7 @@
 
                     <tr>
                   <th>Image : </th>
-                  <td><input type="file" name="certificate_image" id="certificate_image"></td>
+                  <td><input type="file" required name="certificate_image" id="certificate_image"></td>
               </tr>
 
                <tr>
@@ -97,17 +97,17 @@
     var li = "http://localhost:8000/admin/";
 
     $(document).ready(function(){
-      var d = new Date();
+//       var d = new Date();
 
-var month = d.getMonth()+1;
-var day = d.getDate();
+// var month = d.getMonth()+1;
+// var day = d.getDate();
 
-var output = d.getFullYear() + '/' +
-    (month<10 ? '0' : '') + month + '/' +
-    (day<10 ? '0' : '') + day;
+// var output = d.getFullYear() + '/' +
+//     (month<10 ? '0' : '') + month + '/' +
+//     (day<10 ? '0' : '') + day;
 
-    var from = output.replace(/\//g, '')
-    $('#serial_number').val(from);
+//     var from = output.replace(/\//g, '')
+//     $('#serial_number').val(from);
     });
 
     function get_student_info(student_id) {
