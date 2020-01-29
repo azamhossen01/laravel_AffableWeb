@@ -46,13 +46,13 @@
 
     <li class="nav-item {{Request::is('admin/messages*') ? 'active':''}}">
       <a class="nav-link" href="{{route('messages')}}">
-      <i class="fas fa-fw fa-dollar-sign"></i>
+      <i class="fas fa-fw fa-envelope-square"></i>
           <span>Messaging</span></a>
     </li>
 
     <li class="nav-item {{Request::is('admin/certificates*') ? 'active':''}}">
       <a class="nav-link" href="{{route('certificates.index')}}">
-      <i class="fas fa-fw fa-dollar-sign"></i>
+      <i class="fas fa-fw fa-award"></i>
           <span>Certificate</span></a>
     </li>
 

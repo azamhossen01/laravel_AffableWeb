@@ -38,8 +38,8 @@
                                 @enderror
                             </div>
                             
-                            <div id="register-link" class="text-left">
-                            <input type="submit" name="submit" class="btn btn-info btn-md" value="submit">
+                            <div id="register-link" class="text-center">
+                            <input type="submit" name="submit" class="btn btn-info btn-md" value="Login">
                             </div>
                         </form>
                     </div>
