@@ -111,4 +111,6 @@ class HomeController extends Controller
         Alert::success('Success Title', 'Message Sent Successfully');
         return redirect()->route('payments.index');
     }
+
+    
 }

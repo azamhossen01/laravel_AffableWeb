@@ -50,6 +50,12 @@
           <span>Messaging</span></a>
     </li>
 
+    <li class="nav-item {{Request::is('admin/certificates*') ? 'active':''}}">
+      <a class="nav-link" href="{{route('certificates.index')}}">
+      <i class="fas fa-fw fa-dollar-sign"></i>
+          <span>Certificate</span></a>
+    </li>
+
     <li class="nav-item">
     {{-- <a class="nav-link" href="{{route('teams.index')}}">
         <i class="fas fa-fw fa-close"></i>
